@@ -1,8 +1,6 @@
-from dataclasses import dataclass
 from typing import TypedDict
 
-@dataclass
-class CONSTANT_info:
+class CONSTANT_info(TypedDict):
     tag:int
     debug: str
 

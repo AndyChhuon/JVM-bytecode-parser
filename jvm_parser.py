@@ -17,6 +17,8 @@ class ClassFile(TypedDict):
     access_flags: list[str]
     this_class: CONSTANT_info
     super_class: CONSTANT_info
+    interfaces_count: int
+    interfaces: list[CONSTANT_info]
 
 class BytesEncoder(json.JSONEncoder):
     def default(self, o):
@@ -41,7 +43,14 @@ class JVMParser:
         this_class = cp_info[int.from_bytes(buffer.read(2)) - 1]
         super_class = cp_info[int.from_bytes(buffer.read(2)) - 1]
 
-        return {"magic":magic, "minor_version": minor_version, "major_version": major_version, "constant_pool_count":constant_pool_count, "cp_info":cp_info, "access_flags":access_flags, "this_class": this_class, "super_class":super_class}
+        interfaces_count = int.from_bytes(buffer.read(2))
+
+        interfaces = []
+        for _ in range(interfaces_count):
+            interfaces.append(cp_info[int.from_bytes(buffer.read(2)) - 1])
+
+
+        return {"magic":magic, "minor_version": minor_version, "major_version": major_version, "constant_pool_count":constant_pool_count, "cp_info":cp_info, "access_flags":access_flags, "this_class": this_class, "super_class":super_class, "interfaces_count":interfaces_count, "interfaces": interfaces}
 
 with open("Main.class", "rb") as file:
     parser = JVMParser()

@@ -2,7 +2,7 @@
   "magic": "0xcafebabe",
   "minor_version": 0,
   "major_version": 69,
-  "constant_pool_count": 29,
+  "constant_pool_count": 53,
   "cp_info": [
     {
       "tag": 10,
@@ -87,113 +87,277 @@
       "debug_i": 12
     },
     {
-      "tag": 8,
-      "string_index": 14,
-      "debug": "CONSTANT_String_info_Parser",
+      "tag": 7,
+      "name_index": 14,
+      "debug": "CONSTANT_Class_info_Parser",
       "debug_i": 13
-    },
-    {
-      "tag": 1,
-      "length": 11,
-      "bytes": "Hello world",
-      "debug": "CONSTANT_Utf8_info_Parser",
-      "debug_i": 14
-    },
-    {
-      "tag": 10,
-      "class_index": 16,
-      "name_and_type_index": 17,
-      "debug": "CONSTANT_Method_ref_info_Parser",
-      "debug_i": 15
-    },
-    {
-      "tag": 7,
-      "name_index": 18,
-      "debug": "CONSTANT_Class_info_Parser",
-      "debug_i": 16
-    },
-    {
-      "tag": 12,
-      "name_index": 19,
-      "descriptor_index": 20,
-      "debug": "CONSTANT_NameAndType_info_Parser",
-      "debug_i": 17
-    },
-    {
-      "tag": 1,
-      "length": 19,
-      "bytes": "java/io/PrintStream",
-      "debug": "CONSTANT_Utf8_info_Parser",
-      "debug_i": 18
-    },
-    {
-      "tag": 1,
-      "length": 7,
-      "bytes": "println",
-      "debug": "CONSTANT_Utf8_info_Parser",
-      "debug_i": 19
-    },
-    {
-      "tag": 1,
-      "length": 21,
-      "bytes": "(Ljava/lang/String;)V",
-      "debug": "CONSTANT_Utf8_info_Parser",
-      "debug_i": 20
-    },
-    {
-      "tag": 7,
-      "name_index": 22,
-      "debug": "CONSTANT_Class_info_Parser",
-      "debug_i": 21
     },
     {
       "tag": 1,
       "length": 4,
       "bytes": "Main",
       "debug": "CONSTANT_Utf8_info_Parser",
+      "debug_i": 14
+    },
+    {
+      "tag": 8,
+      "string_index": 16,
+      "debug": "CONSTANT_String_info_Parser",
+      "debug_i": 15
+    },
+    {
+      "tag": 1,
+      "length": 11,
+      "bytes": "Hello world",
+      "debug": "CONSTANT_Utf8_info_Parser",
+      "debug_i": 16
+    },
+    {
+      "tag": 10,
+      "class_index": 18,
+      "name_and_type_index": 19,
+      "debug": "CONSTANT_Method_ref_info_Parser",
+      "debug_i": 17
+    },
+    {
+      "tag": 7,
+      "name_index": 20,
+      "debug": "CONSTANT_Class_info_Parser",
+      "debug_i": 18
+    },
+    {
+      "tag": 12,
+      "name_index": 21,
+      "descriptor_index": 22,
+      "debug": "CONSTANT_NameAndType_info_Parser",
+      "debug_i": 19
+    },
+    {
+      "tag": 1,
+      "length": 19,
+      "bytes": "java/io/PrintStream",
+      "debug": "CONSTANT_Utf8_info_Parser",
+      "debug_i": 20
+    },
+    {
+      "tag": 1,
+      "length": 7,
+      "bytes": "println",
+      "debug": "CONSTANT_Utf8_info_Parser",
+      "debug_i": 21
+    },
+    {
+      "tag": 1,
+      "length": 21,
+      "bytes": "(Ljava/lang/String;)V",
+      "debug": "CONSTANT_Utf8_info_Parser",
       "debug_i": 22
+    },
+    {
+      "tag": 8,
+      "string_index": 24,
+      "debug": "CONSTANT_String_info_Parser",
+      "debug_i": 23
+    },
+    {
+      "tag": 1,
+      "length": 7,
+      "bytes": "running",
+      "debug": "CONSTANT_Utf8_info_Parser",
+      "debug_i": 24
+    },
+    {
+      "tag": 9,
+      "class_index": 13,
+      "name_and_type_index": 26,
+      "debug": "CONSTANT_Field_ref_info_Parser",
+      "debug_i": 25
+    },
+    {
+      "tag": 12,
+      "name_index": 27,
+      "descriptor_index": 28,
+      "debug": "CONSTANT_NameAndType_info_Parser",
+      "debug_i": 26
+    },
+    {
+      "tag": 1,
+      "length": 5,
+      "bytes": "names",
+      "debug": "CONSTANT_Utf8_info_Parser",
+      "debug_i": 27
+    },
+    {
+      "tag": 1,
+      "length": 16,
+      "bytes": "Ljava/util/List;",
+      "debug": "CONSTANT_Utf8_info_Parser",
+      "debug_i": 28
+    },
+    {
+      "tag": 11,
+      "class_index": 30,
+      "name_and_type_index": 31,
+      "debug": "CONSTANT_Interface_Method_ref_info_Parser",
+      "debug_i": 29
+    },
+    {
+      "tag": 7,
+      "name_index": 32,
+      "debug": "CONSTANT_Class_info_Parser",
+      "debug_i": 30
+    },
+    {
+      "tag": 12,
+      "name_index": 33,
+      "descriptor_index": 34,
+      "debug": "CONSTANT_NameAndType_info_Parser",
+      "debug_i": 31
+    },
+    {
+      "tag": 1,
+      "length": 14,
+      "bytes": "java/util/List",
+      "debug": "CONSTANT_Utf8_info_Parser",
+      "debug_i": 32
+    },
+    {
+      "tag": 1,
+      "length": 3,
+      "bytes": "add",
+      "debug": "CONSTANT_Utf8_info_Parser",
+      "debug_i": 33
+    },
+    {
+      "tag": 1,
+      "length": 21,
+      "bytes": "(Ljava/lang/Object;)Z",
+      "debug": "CONSTANT_Utf8_info_Parser",
+      "debug_i": 34
+    },
+    {
+      "tag": 7,
+      "name_index": 36,
+      "debug": "CONSTANT_Class_info_Parser",
+      "debug_i": 35
+    },
+    {
+      "tag": 1,
+      "length": 18,
+      "bytes": "java/lang/Runnable",
+      "debug": "CONSTANT_Utf8_info_Parser",
+      "debug_i": 36
+    },
+    {
+      "tag": 7,
+      "name_index": 38,
+      "debug": "CONSTANT_Class_info_Parser",
+      "debug_i": 37
+    },
+    {
+      "tag": 1,
+      "length": 20,
+      "bytes": "java/io/Serializable",
+      "debug": "CONSTANT_Utf8_info_Parser",
+      "debug_i": 38
+    },
+    {
+      "tag": 1,
+      "length": 4,
+      "bytes": "test",
+      "debug": "CONSTANT_Utf8_info_Parser",
+      "debug_i": 39
+    },
+    {
+      "tag": 1,
+      "length": 18,
+      "bytes": "Ljava/lang/String;",
+      "debug": "CONSTANT_Utf8_info_Parser",
+      "debug_i": 40
+    },
+    {
+      "tag": 1,
+      "length": 13,
+      "bytes": "ConstantValue",
+      "debug": "CONSTANT_Utf8_info_Parser",
+      "debug_i": 41
+    },
+    {
+      "tag": 1,
+      "length": 9,
+      "bytes": "Signature",
+      "debug": "CONSTANT_Utf8_info_Parser",
+      "debug_i": 42
+    },
+    {
+      "tag": 1,
+      "length": 36,
+      "bytes": "Ljava/util/List<Ljava/lang/String;>;",
+      "debug": "CONSTANT_Utf8_info_Parser",
+      "debug_i": 43
     },
     {
       "tag": 1,
       "length": 4,
       "bytes": "Code",
       "debug": "CONSTANT_Utf8_info_Parser",
-      "debug_i": 23
+      "debug_i": 44
     },
     {
       "tag": 1,
       "length": 15,
       "bytes": "LineNumberTable",
       "debug": "CONSTANT_Utf8_info_Parser",
-      "debug_i": 24
+      "debug_i": 45
     },
     {
       "tag": 1,
       "length": 4,
       "bytes": "main",
       "debug": "CONSTANT_Utf8_info_Parser",
-      "debug_i": 25
+      "debug_i": 46
     },
     {
       "tag": 1,
       "length": 22,
       "bytes": "([Ljava/lang/String;)V",
       "debug": "CONSTANT_Utf8_info_Parser",
-      "debug_i": 26
+      "debug_i": 47
+    },
+    {
+      "tag": 1,
+      "length": 3,
+      "bytes": "run",
+      "debug": "CONSTANT_Utf8_info_Parser",
+      "debug_i": 48
+    },
+    {
+      "tag": 1,
+      "length": 7,
+      "bytes": "testAdd",
+      "debug": "CONSTANT_Utf8_info_Parser",
+      "debug_i": 49
+    },
+    {
+      "tag": 1,
+      "length": 38,
+      "bytes": "(Ljava/lang/String;)Ljava/lang/String;",
+      "debug": "CONSTANT_Utf8_info_Parser",
+      "debug_i": 50
     },
     {
       "tag": 1,
       "length": 10,
       "bytes": "SourceFile",
       "debug": "CONSTANT_Utf8_info_Parser",
-      "debug_i": 27
+      "debug_i": 51
     },
     {
       "tag": 1,
       "length": 9,
       "bytes": "Main.java",
       "debug": "CONSTANT_Utf8_info_Parser",
-      "debug_i": 28
+      "debug_i": 52
     }
   ],
   "access_flags": [
@@ -203,14 +367,29 @@
   ],
   "this_class": {
     "tag": 7,
-    "name_index": 22,
+    "name_index": 14,
     "debug": "CONSTANT_Class_info_Parser",
-    "debug_i": 21
+    "debug_i": 13
   },
   "super_class": {
     "tag": 7,
     "name_index": 4,
     "debug": "CONSTANT_Class_info_Parser",
     "debug_i": 2
-  }
+  },
+  "interfaces_count": 2,
+  "interfaces": [
+    {
+      "tag": 7,
+      "name_index": 36,
+      "debug": "CONSTANT_Class_info_Parser",
+      "debug_i": 35
+    },
+    {
+      "tag": 7,
+      "name_index": 38,
+      "debug": "CONSTANT_Class_info_Parser",
+      "debug_i": 37
+    }
+  ]
 }
