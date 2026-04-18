@@ -21,3 +21,7 @@ class CONSTANT_NameAndType_info(CONSTANT_info):
 class CONSTANT_Utf8_info(CONSTANT_info):
     length:int
     bytes:bytes
+
+
+class CONSTANT_String_info(CONSTANT_info):
+    string_index:int
