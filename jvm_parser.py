@@ -3,6 +3,7 @@ from typing import TypedDict
 
 from constant_pool.const_info_parsers import cp_info_parser
 from constant_pool.const_info_types import CONSTANT_info
+from access_flag.access_flag_parser import access_flag_parser
 
 import pprint
 import json
@@ -13,6 +14,9 @@ class ClassFile(TypedDict):
     major_version:int
     constant_pool_count:int
     cp_info:list[CONSTANT_info]
+    access_flags: list[str]
+    this_class: CONSTANT_info
+    super_class: CONSTANT_info
 
 class BytesEncoder(json.JSONEncoder):
     def default(self, o):
@@ -31,9 +35,13 @@ class JVMParser:
         for i in range(1,constant_pool_count):
             info = cp_info_parser.parse(buffer)
             cp_info.append({**info,"debug_i":i})
-            
+        access_flags = access_flag_parser.parse(int.from_bytes(buffer.read(2)))
 
-        return {"magic":magic, "minor_version": minor_version, "major_version": major_version, "constant_pool_count":constant_pool_count, "cp_info":cp_info}
+        # constant pool index starts at 1
+        this_class = cp_info[int.from_bytes(buffer.read(2)) - 1]
+        super_class = cp_info[int.from_bytes(buffer.read(2)) - 1]
+
+        return {"magic":magic, "minor_version": minor_version, "major_version": major_version, "constant_pool_count":constant_pool_count, "cp_info":cp_info, "access_flags":access_flags, "this_class": this_class, "super_class":super_class}
 
 with open("Main.class", "rb") as file:
     parser = JVMParser()

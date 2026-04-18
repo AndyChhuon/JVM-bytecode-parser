@@ -195,5 +195,22 @@
       "debug": "CONSTANT_Utf8_info_Parser",
       "debug_i": 28
     }
-  ]
+  ],
+  "access_flags": [
+    "ACC_PUBLIC",
+    "ACC_FINAL",
+    "ACC_SUPER"
+  ],
+  "this_class": {
+    "tag": 7,
+    "name_index": 22,
+    "debug": "CONSTANT_Class_info_Parser",
+    "debug_i": 21
+  },
+  "super_class": {
+    "tag": 7,
+    "name_index": 4,
+    "debug": "CONSTANT_Class_info_Parser",
+    "debug_i": 2
+  }
 }
