@@ -1,9 +1,13 @@
+from enum import Enum
 from io import BufferedReader, BytesIO
 from typing import TypedDict
 
 from constant_pool.const_info_parsers import cp_info_parser
 from constant_pool.const_info_types import CONSTANT_info
 from access_flag.access_flag_parser import access_flag_parser
+from access_flag.access_flag_types import AccessFlag
+from field_info.field_info_parser import FieldInfoParser
+from field_info.fields_info_types import Field_info
 
 import pprint
 import json
@@ -14,16 +18,20 @@ class ClassFile(TypedDict):
     major_version:int
     constant_pool_count:int
     cp_info:list[CONSTANT_info]
-    access_flags: list[str]
+    access_flags: list[AccessFlag]
     this_class: CONSTANT_info
     super_class: CONSTANT_info
     interfaces_count: int
     interfaces: list[CONSTANT_info]
+    fields_count: int
+    fields: list[Field_info]
 
 class BytesEncoder(json.JSONEncoder):
     def default(self, o):
         if isinstance(o, bytes):
             return o.decode("utf-8")
+        if isinstance(o, Enum):
+            return o.value
         return super().default(o)
 
 class JVMParser:
@@ -49,8 +57,13 @@ class JVMParser:
         for _ in range(interfaces_count):
             interfaces.append(cp_info[int.from_bytes(buffer.read(2)) - 1])
 
+        fields_count = int.from_bytes(buffer.read(2))
+        fields = []
+        for _ in range(fields_count):
+            field = FieldInfoParser.parse(cp_info, buffer)
+            fields.append(field)
 
-        return {"magic":magic, "minor_version": minor_version, "major_version": major_version, "constant_pool_count":constant_pool_count, "cp_info":cp_info, "access_flags":access_flags, "this_class": this_class, "super_class":super_class, "interfaces_count":interfaces_count, "interfaces": interfaces}
+        return {"magic":magic, "minor_version": minor_version, "major_version": major_version, "constant_pool_count":constant_pool_count, "cp_info":cp_info, "access_flags":access_flags, "this_class": this_class, "super_class":super_class, "interfaces_count":interfaces_count, "interfaces": interfaces, "fields_count": fields_count, "fields":fields}
 
 with open("Main.class", "rb") as file:
     parser = JVMParser()
