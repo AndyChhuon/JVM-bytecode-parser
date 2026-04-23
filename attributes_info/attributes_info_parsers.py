@@ -1,6 +1,6 @@
 from io import BufferedReader, BytesIO
 from typing import cast
-from attributes_info.attributes_info_types import Attributes_info, Code_attribute, ConstantValue_attribute, LineNumberTable_attribute, Signature_attribute
+from attributes_info.attributes_info_types import Attributes_info, Code_attribute, ConstantValue_attribute, LineNumberTable_attribute, Signature_attribute, SourceFile_attribute
 from abc import ABC, abstractmethod
 
 from attributes_info.exception_table.exception_table_parser import ExceptionTableParser
@@ -42,7 +42,7 @@ class Attribute_info_Code_Parser(Attribute_info_parser):
             exception_table.append(ExceptionTableParser.parse(cp_info, buffer))
         attributes_count = int.from_bytes(buffer.read(2))
         attributes_info = []
-        print("exception_table_length", exception_table_length)
+
         for _ in range(attributes_count):
             attributes_info.append(Attributes_info_parser.parse(cp_info, buffer))
         
@@ -61,6 +61,14 @@ class Attribute_info_Line_Number_Table_Parser(Attribute_info_parser):
         
         return {"attribute_name_index": attribute_name_index, "attribute_length": attribute_length, "line_number_table_length": line_number_table_length, "line_number_table": line_number_table, "debug": cls.__name__.removesuffix("_Parser")}
 
+class Attribute_info_Source_File_Parser(Attribute_info_parser):
+    @classmethod
+    def parse(cls, attribute_name_index: int, buffer: BufferedReader|BytesIO, cp_info:list[CONSTANT_info]) -> SourceFile_attribute:
+        attribute_length = int.from_bytes(buffer.read(4))
+        sourcefile_index = int.from_bytes(buffer.read(2))
+        
+        return {"attribute_name_index": attribute_name_index, "attribute_length": attribute_length, "sourcefile_index": sourcefile_index, "debug": cls.__name__.removesuffix("_Parser")}
+
 
 
 class Attributes_info_parser:
@@ -68,7 +76,8 @@ class Attributes_info_parser:
         "ConstantValue": Attribute_info_Constant_Value_Parser,
         "Signature": Attribute_info_Signature_Parser,
         "Code": Attribute_info_Code_Parser,
-        "LineNumberTable": Attribute_info_Line_Number_Table_Parser
+        "LineNumberTable": Attribute_info_Line_Number_Table_Parser,
+        "SourceFile": Attribute_info_Source_File_Parser
     }
 
     @classmethod
@@ -76,7 +85,7 @@ class Attributes_info_parser:
         attribute_name_index = int.from_bytes(buffer.read(2))
         
         Utf8_info_attribute_name = cast(CONSTANT_Utf8_info, cp_info[attribute_name_index-1])
-        print(Utf8_info_attribute_name["bytes"])
+
         attribute_type = Utf8_info_attribute_name["bytes"].decode('utf-8')
 
         if attribute_type not in cls.ATTRIBUTES_DICT_PARSERS:

@@ -2,6 +2,8 @@ from enum import Enum
 from io import BufferedReader, BytesIO
 from typing import TypedDict
 
+from attributes_info.attributes_info_parsers import Attributes_info_parser
+from attributes_info.attributes_info_types import Attributes_info
 from constant_pool.const_info_parsers import cp_info_parser
 from constant_pool.const_info_types import CONSTANT_info
 from access_flag.access_flag_parser import access_flag_parser
@@ -30,6 +32,8 @@ class ClassFile(TypedDict):
     fields: list[Field_info]
     methods_count: int
     methods: list[Method_info]
+    attributes_count: int
+    attributes: list[Attributes_info]
 
 class BytesEncoder(json.JSONEncoder):
       def default(self, o):
@@ -77,7 +81,13 @@ class JVMParser:
         for _ in range(methods_count):
             methods.append(MethodsInfoParser.parse(cp_info, buffer))
 
-        return {"magic":magic, "minor_version": minor_version, "major_version": major_version, "constant_pool_count":constant_pool_count, "cp_info":cp_info, "access_flags":access_flags, "this_class": this_class, "super_class":super_class, "interfaces_count":interfaces_count, "interfaces": interfaces, "fields_count": fields_count, "fields":fields, "methods_count": methods_count, "methods": methods}
+        attributes_count = int.from_bytes(buffer.read(2))
+        attributes = []
+
+        for _ in range(attributes_count):
+            attributes.append(Attributes_info_parser.parse(cp_info, buffer))
+
+        return {"magic":magic, "minor_version": minor_version, "major_version": major_version, "constant_pool_count":constant_pool_count, "cp_info":cp_info, "access_flags":access_flags, "this_class": this_class, "super_class":super_class, "interfaces_count":interfaces_count, "interfaces": interfaces, "fields_count": fields_count, "fields":fields, "methods_count": methods_count, "methods": methods, "attributes_count": attributes_count, "attributes":attributes}
 
 with open("Main.class", "rb") as file:
     parser = JVMParser()

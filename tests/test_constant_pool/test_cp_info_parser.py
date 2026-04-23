@@ -10,7 +10,7 @@ class TestCpInfoParser(unittest.TestCase):
         self.assertEqual(result, {
             "tag": 7,
             "name_index": 4,
-            "debug": "CONSTANT_Class_info_Parser",
+            "debug": "CONSTANT_Class_info",
         })
 
     def test_parse_utf8_info(self):
@@ -20,7 +20,7 @@ class TestCpInfoParser(unittest.TestCase):
             "tag": 1,
             "length": 5,
             "bytes": b"Hello",
-            "debug": "CONSTANT_Utf8_info_Parser",
+            "debug": "CONSTANT_Utf8_info",
         })
 
     def test_parse_string_info(self):
@@ -29,7 +29,7 @@ class TestCpInfoParser(unittest.TestCase):
         self.assertEqual(result, {
             "tag": 8,
             "string_index": 14,
-            "debug": "CONSTANT_String_info_Parser",
+            "debug": "CONSTANT_String_info",
         })
 
     def test_parse_name_and_type(self):
@@ -40,7 +40,7 @@ class TestCpInfoParser(unittest.TestCase):
             "tag": 12,
             "name_index": 5,
             "descriptor_index": 6,
-            "debug": "CONSTANT_NameAndType_info_Parser",
+            "debug": "CONSTANT_NameAndType_info",
         })
 
     def test_parse_fieldref(self):
@@ -51,7 +51,7 @@ class TestCpInfoParser(unittest.TestCase):
             "tag": 9,
             "class_index": 8,
             "name_and_type_index": 9,
-            "debug": "CONSTANT_Field_ref_info_Parser",
+            "debug": "CONSTANT_Field_ref_info",
         })
 
     def test_parse_methodref(self):
@@ -61,7 +61,7 @@ class TestCpInfoParser(unittest.TestCase):
             "tag": 10,
             "class_index": 2,
             "name_and_type_index": 3,
-            "debug": "CONSTANT_Method_ref_info_Parser",
+            "debug": "CONSTANT_Method_ref_info",
         })
 
     def test_parse_interface_methodref(self):
@@ -71,14 +71,14 @@ class TestCpInfoParser(unittest.TestCase):
             "tag": 11,
             "class_index": 2,
             "name_and_type_index": 3,
-            "debug": "CONSTANT_Interface_Method_ref_info_Parser",
+            "debug": "CONSTANT_Interface_Method_ref_info",
         })
 
     def test_unknown_tag_raises(self):
         buffer = BytesIO(b"\x63\x00\x00")
         with self.assertRaises(NotImplementedError) as ctx:
             cp_info_parser.parse(buffer)
-        self.assertIn("99 not implemented yet in CP_DICT_Parsers", str(ctx.exception))
+        self.assertIn("99 not implemented yet in CP_DICT_PARSERS", str(ctx.exception))
 
     def test_utf8_empty_string(self):
       buffer = BytesIO(b"\x01\x00\x00")
@@ -87,7 +87,7 @@ class TestCpInfoParser(unittest.TestCase):
           "tag": 1,
           "length": 0,
           "bytes": b"",
-          "debug": "CONSTANT_Utf8_info_Parser",
+          "debug": "CONSTANT_Utf8_info",
       })
 
     def test_buffer_consumed_correctly(self):
@@ -97,11 +97,11 @@ class TestCpInfoParser(unittest.TestCase):
       self.assertEqual(first, {
           "tag": 7,
           "name_index": 4,
-          "debug": "CONSTANT_Class_info_Parser",
+          "debug": "CONSTANT_Class_info",
       })
       self.assertEqual(second, {
           "tag": 1,
           "length": 3,
           "bytes": b"Foo",
-          "debug": "CONSTANT_Utf8_info_Parser",
+          "debug": "CONSTANT_Utf8_info",
       })

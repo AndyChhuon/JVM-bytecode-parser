@@ -588,5 +588,14 @@
         }
       ]
     }
+  ],
+  "attributes_count": 1,
+  "attributes": [
+    {
+      "attribute_name_index": 51,
+      "attribute_length": 2,
+      "sourcefile_index": 52,
+      "debug": "Attribute_info_Source_File"
+    }
   ]
 }

@@ -28,3 +28,6 @@ class Code_attribute(Attributes_info):
 class LineNumberTable_attribute(Attributes_info):
     line_number_table_length: int
     line_number_table: list[Line_number_table]
+
+class SourceFile_attribute(Attributes_info):
+    sourcefile_index: int
