@@ -8,9 +8,12 @@ from access_flag.access_flag_parser import access_flag_parser
 from access_flag.access_flag_types import AccessFlag
 from field_info.field_info_parser import FieldInfoParser
 from field_info.fields_info_types import Field_info
+from methods_info.methods_info_parser import MethodsInfoParser
 
 import pprint
 import json
+
+from methods_info.methods_info_types import Method_info
 
 class ClassFile(TypedDict):
     magic:str
@@ -25,14 +28,19 @@ class ClassFile(TypedDict):
     interfaces: list[CONSTANT_info]
     fields_count: int
     fields: list[Field_info]
+    methods_count: int
+    methods: list[Method_info]
 
 class BytesEncoder(json.JSONEncoder):
-    def default(self, o):
-        if isinstance(o, bytes):
-            return o.decode("utf-8")
-        if isinstance(o, Enum):
-            return o.value
-        return super().default(o)
+      def default(self, o):
+          if isinstance(o, bytes):
+              try:
+                  return o.decode("utf-8")
+              except UnicodeDecodeError:
+                  return o.hex(" ")
+          if isinstance(o, Enum):
+              return o.value
+          return super().default(o)
 
 class JVMParser:
     def parse(self, buffer:BufferedReader|BytesIO) -> ClassFile:
@@ -63,7 +71,13 @@ class JVMParser:
             field = FieldInfoParser.parse(cp_info, buffer)
             fields.append(field)
 
-        return {"magic":magic, "minor_version": minor_version, "major_version": major_version, "constant_pool_count":constant_pool_count, "cp_info":cp_info, "access_flags":access_flags, "this_class": this_class, "super_class":super_class, "interfaces_count":interfaces_count, "interfaces": interfaces, "fields_count": fields_count, "fields":fields}
+        methods_count = int.from_bytes(buffer.read(2))
+        methods = []
+
+        for _ in range(methods_count):
+            methods.append(MethodsInfoParser.parse(cp_info, buffer))
+
+        return {"magic":magic, "minor_version": minor_version, "major_version": major_version, "constant_pool_count":constant_pool_count, "cp_info":cp_info, "access_flags":access_flags, "this_class": this_class, "super_class":super_class, "interfaces_count":interfaces_count, "interfaces": interfaces, "fields_count": fields_count, "fields":fields, "methods_count": methods_count, "methods": methods}
 
 with open("Main.class", "rb") as file:
     parser = JVMParser()

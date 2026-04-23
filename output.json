@@ -428,5 +428,165 @@
         }
       ]
     }
+  ],
+  "methods_count": 4,
+  "methods": [
+    {
+      "access_flags": [
+        "ACC_PUBLIC"
+      ],
+      "name_index": 5,
+      "descriptor_index": 6,
+      "attributes_count": 1,
+      "attributes": [
+        {
+          "attribute_name_index": 44,
+          "attribute_length": 29,
+          "max_stack": 1,
+          "max_locals": 1,
+          "code_length": 5,
+          "code": "2a b7 00 01 b1",
+          "exception_table_length": 0,
+          "exception_table": [],
+          "attributes_count": 1,
+          "attributes_info": [
+            {
+              "attribute_name_index": 45,
+              "attribute_length": 6,
+              "line_number_table_length": 1,
+              "line_number_table": [
+                {
+                  "start_pc": 0,
+                  "line_number": 4
+                }
+              ],
+              "debug": "Attribute_info_Line_Number_Table"
+            }
+          ],
+          "debug": "Attribute_info_Code"
+        }
+      ]
+    },
+    {
+      "access_flags": [
+        "ACC_PUBLIC",
+        "ACC_STATIC"
+      ],
+      "name_index": 46,
+      "descriptor_index": 47,
+      "attributes_count": 1,
+      "attributes": [
+        {
+          "attribute_name_index": 44,
+          "attribute_length": 37,
+          "max_stack": 2,
+          "max_locals": 1,
+          "code_length": 9,
+          "code": "b2 00 07 12 0f b6 00 11 b1",
+          "exception_table_length": 0,
+          "exception_table": [],
+          "attributes_count": 1,
+          "attributes_info": [
+            {
+              "attribute_name_index": 45,
+              "attribute_length": 10,
+              "line_number_table_length": 2,
+              "line_number_table": [
+                {
+                  "start_pc": 0,
+                  "line_number": 9
+                },
+                {
+                  "start_pc": 8,
+                  "line_number": 10
+                }
+              ],
+              "debug": "Attribute_info_Line_Number_Table"
+            }
+          ],
+          "debug": "Attribute_info_Code"
+        }
+      ]
+    },
+    {
+      "access_flags": [
+        "ACC_PUBLIC"
+      ],
+      "name_index": 48,
+      "descriptor_index": 6,
+      "attributes_count": 1,
+      "attributes": [
+        {
+          "attribute_name_index": 44,
+          "attribute_length": 37,
+          "max_stack": 2,
+          "max_locals": 1,
+          "code_length": 9,
+          "code": "b2 00 07 12 17 b6 00 11 b1",
+          "exception_table_length": 0,
+          "exception_table": [],
+          "attributes_count": 1,
+          "attributes_info": [
+            {
+              "attribute_name_index": 45,
+              "attribute_length": 10,
+              "line_number_table_length": 2,
+              "line_number_table": [
+                {
+                  "start_pc": 0,
+                  "line_number": 15
+                },
+                {
+                  "start_pc": 8,
+                  "line_number": 16
+                }
+              ],
+              "debug": "Attribute_info_Line_Number_Table"
+            }
+          ],
+          "debug": "Attribute_info_Code"
+        }
+      ]
+    },
+    {
+      "access_flags": [
+        "ACC_PUBLIC"
+      ],
+      "name_index": 49,
+      "descriptor_index": 50,
+      "attributes_count": 1,
+      "attributes": [
+        {
+          "attribute_name_index": 44,
+          "attribute_length": 41,
+          "max_stack": 2,
+          "max_locals": 2,
+          "code_length": 13,
+          "code": "2a b4 00 19 2b b9 00 1d 02 00 57 2b b0",
+          "exception_table_length": 0,
+          "exception_table": [],
+          "attributes_count": 1,
+          "attributes_info": [
+            {
+              "attribute_name_index": 45,
+              "attribute_length": 10,
+              "line_number_table_length": 2,
+              "line_number_table": [
+                {
+                  "start_pc": 0,
+                  "line_number": 19
+                },
+                {
+                  "start_pc": 11,
+                  "line_number": 20
+                }
+              ],
+              "debug": "Attribute_info_Line_Number_Table"
+            }
+          ],
+          "debug": "Attribute_info_Code"
+        }
+      ]
+    }
   ]
 }
